@@ -21,9 +21,8 @@ public class PrjAGEDA {
          * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          * 01° - Leitura do(s) Arquivo(s) <nome(s)>.arff 
          * 02° - Processamento das Instâncias (Decision Stumps) - Criação das Árvores com seus atributos { Numérico - Bifurcado / Demais - Quantidade de atributos existentes } 
-         * 03° - Geração das Árvore e das Sub-Árvores - Sorteia-se o nodo raiz de forma aleatória - Percorrer até atingir o nível de
-         * profundidade definido por parâmetro - Para cada atributos da Árvore será sorteado c/ 50% de probabilidade a inserção de uma nova Sub-Árvore - Retornar a Árvore com todas
-         * as suas Sub-Árvores geradas 
+         * 03° - Geração das Árvore e das Sub-Árvores - Sorteia-se o nodo raiz de forma aleatória - Percorrer até atingir o nível de profundidade definido por parâmetro - Para cada
+         *       atributos da Árvore será sorteado c/ 50% de probabilidade a inserção de uma nova Sub-Árvore - Retornar a Árvore com todas as suas Sub-Árvores geradas 
          * 04° - Geração da População Inicial até atingir a quantidade de Árvores parametrizada 
          * 05° - Efetuado o Treinamento das Árvores (para definição
          * das classes dos nós folhas E da classe dominante de cada um dos nodos folhas) 

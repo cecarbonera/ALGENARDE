@@ -776,7 +776,8 @@ public class Processamento {
 
     //<editor-fold defaultstate="collapsed" desc="Calcular o Valor Médio da Árvores(arestas) - Para Atributos Numéricos">    
     //Efetuar o Cálculo do Indice Gini p/ Atributos Contínuos 
-    //Por Exemplo Indice Gini = 1 - (Somatório Quant. Atrib. "A" / Total de Instâncias) ^ 2 - (Somatório Quant. Atrib. "N" / Total de Instâncias) ^ 2.
+    //Por Exemplo Indice Gini = 1 - ((Somatório Quant. Atrib. "A" / Total de Instâncias) ^ 2) - 
+    //                              ((Somatório Quant. Atrib. "N" / Total de Instâncias) ^ 2).
     private double calcularIndiceGini(Instances dados, int pos) {
         //Declaração Variáveis e objetos
         List<IndiceGini> filtrados, valores = new ArrayList<>();

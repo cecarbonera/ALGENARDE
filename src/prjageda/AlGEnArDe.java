@@ -154,7 +154,17 @@ public class AlGEnArDe {
                 //percorrer todas as arestas do árvore
                 for (int i = 0; i < arvore.getArestas().size(); i++) {
                     //Gerar as Sub-Árvores com 50% de probabilidade                
-                    if (mtw.nextBoolean()) {
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //if (mtw.nextBoolean()) {
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
+                    //Aqui descomentar ------------------------------------------------
                         //Tratamento dos _nodos (Geração das Sub-Árvores e Atributos)
                         ArrayList<Arvores> arvTemp = (ArrayList<Arvores>) ObjectUtil.deepCopyList(_nodos);
 
@@ -165,7 +175,7 @@ public class AlGEnArDe {
                         //Chamada Recursiva para Geração da árvore atualizando o nivel de _profundidade
                         gerarPopulacaoArvores(nroAtributos, prof + 1, arvore.getArvoreApartirAresta(i));
 
-                    }
+                    //}
 
                 }
 
