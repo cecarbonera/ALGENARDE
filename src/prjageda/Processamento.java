@@ -229,115 +229,7 @@ public class Processamento {
         return retorno;
 
     }
-    //</editor-fold>  
-
-    //<editor-fold defaultstate="collapsed" desc="Funções Pertinentes aos Métodos de Mutação">   
-    //Efetuar a Mutação da árvore, a mesma poderá ser de "E"xpansão ou "R"edução
-    private void efetuarMutacaoArvores(Arvores arvore, int prof, String tipo, String atributo) throws IOException {
-        try {
-            //Se a árvore não for nula
-            if (arvore == null) {
-                return;
-
-            }
-
-            //Se possuir arestas válidas
-            if (arvore.getArestas().isEmpty()) {
-                return;
-
-            }
-
-            //SE for "E" - EXPANSÃO - Vai até um nodo FOLHA ALEATÓRIO E ADICIONA um AlGEnArDe Aleatóriamente
-            //SENÃO  "R" - REDUÇÃO  - Vai até o nodo passado como parâmetro e transforma-se todos as sub-árvores abaixo em folhas
-            //Condição de Parada - Se o grau de _profundidade for máximo
-            if (prof <= (AlGEnArDe._profundidade + 1)) {
-                //Se for "EXPANSÃO"
-                if (tipo.equals("E")) {
-                    //Declaração Variáveis e Objetos - Selecionar uma posição aleatória
-                    int itemPos = arvore.getArestas().size() <= 1 ? 0 : AlGEnArDe.mtw.nextInt(arvore.getArestas().size() - 1);
-                    ArrayList<Arvores> temp = (ArrayList<Arvores>) ObjectUtil.deepCopyList(AlGEnArDe._nodos);
-
-                    //Se a aresta selecionada não for nula percorre até encontrar uma aresta nula
-                    if (arvore.getArestas(itemPos) != null) {
-                        //Se o nodo da aresta não for nulo
-                        if (arvore.getArestas(itemPos).getNodo() != null) {
-                            //Se atingiu o MAIOR NÍVEL de _profundidade da árvore (O último nodo da aresta DEVERÁ SER nulo) - Avaliando a aresta SELECIONADA aleatóriamente
-                            if (arvore.getArestas(itemPos).getNodo().getArestas(itemPos) != null) {
-                                //Se atingiu o MAIOR NÍVEL de _profundidade da árvore (O último nodo da aresta DEVERÁ SER nulo) - Avaliando a aresta SELECIONADA aleatóriamente
-                                if (arvore.getArestas(itemPos).getNodo().getArestas(itemPos).getNodo() == null) {
-                                    //Selecionar aleatóriamente uma árvore p/ ser incluida no nodo raiz e Adicionar o nodo na aresta selecionada e retornar
-                                    arvore.getArestas(itemPos).getNodo().getArestas(itemPos).setNodo(temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1)));
-                                    return;
-
-                                }
-                            } else {
-                                //Chamar a função recursivamente até chegar em um nodo raiz
-                                efetuarMutacaoArvores(arvore.getArestas(itemPos).getNodo(), prof + 1, tipo, atributo);
-
-                            }
-
-                        } else {
-                            //Se o nodo for nulo, seleciona uma Decision Stump aleatóriamente p/ ser incluida no nodo folha
-                            arvore.getArestas(itemPos).setNodo(temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1)));
-
-                        }
-
-                    } else //Se a aresta for nula insere 
-                    {
-                        //Declaração variáveis e Objetos
-                        Arvores arvTempor = temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1));
-                        ArrayList<Atributos> atribs = new ArrayList<>();
-
-                        //Atribuições
-                        atribs.add(new Atributos(arvTempor.getNomeAtributo(), null, "", null));
-
-                        //Se o nodo for nulo, seleciona uma Decision Stump aleatóriamente p/ ser incluida no nodo folha e retornar
-                        arvore.setArestas(atribs);
-                        return;
-
-                    }
-
-                } else {
-                    //Se for "REDUÇÃO"
-                    //Prcorrer as Arestas
-                    for (int i = 0; i < arvore.getArestas().size(); i++) {
-                        //Se a aresta não for nula
-                        if (arvore.getArestas(i) != null) {
-                            //Se o nodo não for nulo
-                            if (arvore.getArestas(i).getNodo() != null) {
-                                //Se for o Atributo Selecionado Atribuo nulo senão retorno pra pesquisa
-                                if (arvore.getArestas(i).getNodo().getNomeAtributo().equals(atributo)) {
-                                    //Transformar o Nodo c/ arestas em Nodo Folha (Mutação de "REDUÇÃO") E Sair do processamento
-                                    arvore.getArestas(i).setNodo(null);
-
-                                    //Sair fora da execução
-                                    break;
-
-                                } else {
-                                    //Chamada recursiva da função atualizando o nível de _profundidade
-                                    efetuarMutacaoArvores(arvore.getArestas(i).getNodo(), prof + 1, tipo, atributo);
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-    }
-    //</editor-fold>        
-
-    //<editor-fold defaultstate="collapsed" desc="Funções Destinadas ao Crossover">
+    
     //Remover uma Sub-Árvore da Árvore atual e setar nulo a mesma
     public Arvores PesquisarPosicaoArvoreOrigem(Arvores arvore, String atributo, int prof) {
         //Se a árvore não for nula
@@ -772,8 +664,115 @@ public class Processamento {
         }
 
     }
-    //</editor-fold>        
+       
+    //</editor-fold>  
 
+    //<editor-fold defaultstate="collapsed" desc="Funções Pertinentes aos Métodos de Mutação">   
+    //Efetuar a Mutação da árvore, a mesma poderá ser de "E"xpansão ou "R"edução
+    private void efetuarMutacaoArvores(Arvores arvore, int prof, String tipo, String atributo) throws IOException {
+        try {
+            //Se a árvore não for nula
+            if (arvore == null) {
+                return;
+
+            }
+
+            //Se possuir arestas válidas
+            if (arvore.getArestas().isEmpty()) {
+                return;
+
+            }
+
+            //SE for "E" - EXPANSÃO - Vai até um nodo FOLHA ALEATÓRIO E ADICIONA um AlGEnArDe Aleatóriamente
+            //SENÃO  "R" - REDUÇÃO  - Vai até o nodo passado como parâmetro e transforma-se todos as sub-árvores abaixo em folhas
+            //Condição de Parada - Se o grau de _profundidade for máximo
+            if (prof <= (AlGEnArDe._profundidade + 1)) {
+                //Se for "EXPANSÃO"
+                if (tipo.equals("E")) {
+                    //Declaração Variáveis e Objetos - Selecionar uma posição aleatória
+                    int itemPos = arvore.getArestas().size() <= 1 ? 0 : AlGEnArDe.mtw.nextInt(arvore.getArestas().size() - 1);
+                    ArrayList<Arvores> temp = (ArrayList<Arvores>) ObjectUtil.deepCopyList(AlGEnArDe._nodos);
+
+                    //Se a aresta selecionada não for nula percorre até encontrar uma aresta nula
+                    if (arvore.getArestas(itemPos) != null) {
+                        //Se o nodo da aresta não for nulo
+                        if (arvore.getArestas(itemPos).getNodo() != null) {
+                            //Se atingiu o MAIOR NÍVEL de _profundidade da árvore (O último nodo da aresta DEVERÁ SER nulo) - Avaliando a aresta SELECIONADA aleatóriamente
+                            if (arvore.getArestas(itemPos).getNodo().getArestas(itemPos) != null) {
+                                //Se atingiu o MAIOR NÍVEL de _profundidade da árvore (O último nodo da aresta DEVERÁ SER nulo) - Avaliando a aresta SELECIONADA aleatóriamente
+                                if (arvore.getArestas(itemPos).getNodo().getArestas(itemPos).getNodo() == null) {
+                                    //Selecionar aleatóriamente uma árvore p/ ser incluida no nodo raiz e Adicionar o nodo na aresta selecionada e retornar
+                                    arvore.getArestas(itemPos).getNodo().getArestas(itemPos).setNodo(temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1)));
+                                    return;
+
+                                }
+                            } else {
+                                //Chamar a função recursivamente até chegar em um nodo raiz
+                                efetuarMutacaoArvores(arvore.getArestas(itemPos).getNodo(), prof + 1, tipo, atributo);
+
+                            }
+
+                        } else {
+                            //Se o nodo for nulo, seleciona uma Decision Stump aleatóriamente p/ ser incluida no nodo folha
+                            arvore.getArestas(itemPos).setNodo(temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1)));
+
+                        }
+
+                    } else //Se a aresta for nula insere 
+                    {
+                        //Declaração variáveis e Objetos
+                        Arvores arvTempor = temp.get(AlGEnArDe.mtw.nextInt(temp.size() - 1));
+                        ArrayList<Atributos> atribs = new ArrayList<>();
+
+                        //Atribuições
+                        atribs.add(new Atributos(arvTempor.getNomeAtributo(), null, "", null));
+
+                        //Se o nodo for nulo, seleciona uma Decision Stump aleatóriamente p/ ser incluida no nodo folha e retornar
+                        arvore.setArestas(atribs);
+                        return;
+
+                    }
+
+                } else {
+                    //Se for "REDUÇÃO"
+                    //Prcorrer as Arestas
+                    for (int i = 0; i < arvore.getArestas().size(); i++) {
+                        //Se a aresta não for nula
+                        if (arvore.getArestas(i) != null) {
+                            //Se o nodo não for nulo
+                            if (arvore.getArestas(i).getNodo() != null) {
+                                //Se for o Atributo Selecionado Atribuo nulo senão retorno pra pesquisa
+                                if (arvore.getArestas(i).getNodo().getNomeAtributo().equals(atributo)) {
+                                    //Transformar o Nodo c/ arestas em Nodo Folha (Mutação de "REDUÇÃO") E Sair do processamento
+                                    arvore.getArestas(i).setNodo(null);
+
+                                    //Sair fora da execução
+                                    break;
+
+                                } else {
+                                    //Chamada recursiva da função atualizando o nível de _profundidade
+                                    efetuarMutacaoArvores(arvore.getArestas(i).getNodo(), prof + 1, tipo, atributo);
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+    //</editor-fold>        
+    
     //<editor-fold defaultstate="collapsed" desc="Calcular o Valor Médio da Árvores(arestas) - Para Atributos Numéricos">    
     //Efetuar o Cálculo do Indice Gini p/ Atributos Contínuos 
     //Por Exemplo Indice Gini = 1 - ((Somatório Quant. Atrib. "A" / Total de Instâncias) ^ 2) - 

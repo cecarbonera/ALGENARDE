@@ -28,7 +28,7 @@ public class AlGEnArDe {
     }
     //</editor-fold>  
 
-    //<editor-fold defaultstate="collapsed" desc="3° Definição dos Métodos pertinentes a Geração da População">
+    //<editor-fold defaultstate="collapsed" desc="2° Definição dos Métodos pertinentes a Geração da População">
     //Tradução da Sigla - AlGenArDe - "Al"goritmo "Gen"ético de "Ar"vore de "De"cisão
     public void AlGenArDe(Instances dados) throws Exception {
         try {
@@ -62,7 +62,7 @@ public class AlGEnArDe {
                 //Efetuar a Geração da População Inicial, informar a _quantidade de atributos MENOS o atributos classe
                 gerarPopulacaoInicial(treino, validacao, _profundidade + 1);
 
-                System.out.println("Melhor Arvore.: " + _arvores.get(0).getNomeAtributo() + " "
+                System.out.println("Geração.: " + geracaoAtual + " - Melhor Arvore.: " + _arvores.get(0).getNomeAtributo() + " "
                         + _arvores.get(0).getFitness());
 
                 //Efetuar a geração das novas populações
@@ -83,7 +83,7 @@ public class AlGEnArDe {
                     //Calcular o Fitness e após Ordenar Crescente (em função do Crossover e da Mutação a profundidade da árvore poderá duplicar)
                     calcularFitnessPopulacao(treino, validacao, profMaxima, Processamento._qtdElitismo);
                     
-                    System.out.println("Melhor Arvore.: " + _arvores.get(0).getNomeAtributo() + " "
+                    System.out.println("Geração.: " + geracaoAtual + " - Melhor Arvore.: " + _arvores.get(0).getNomeAtributo() + " "
                             + _arvores.get(0).getFitness());
                 }
 
@@ -207,7 +207,7 @@ public class AlGEnArDe {
     }
     //</editor-fold> 
 
-    //<editor-fold defaultstate="collapsed" desc="4° Definição dos Métodos e Funções Destinadas a Avaliação da População">    
+    //<editor-fold defaultstate="collapsed" desc="3° Definição dos Métodos e Funções Destinadas a Avaliação da População">    
     //Definição do Cálculo do Fitness 
     // 1° Passo - Efetua-se a classificação das árvores (definição da classe majoritária) com as instâncias de teste
     // 2° Passo - Efetua-se a Validação da árvore pelas instâncias de treinamento
